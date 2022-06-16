@@ -1,0 +1,75 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
+@font-face {
+  font-family: 'Jua', sans-serif;
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
+}
+
+@layer base {
+  html > body {
+    @apply bg-gray-400
+  }
+  button[aria-current='page']{
+    @apply bg-yellow-300
+  }
+
+}
+
+html > body{
+  font-family: 'Jua', sans-serif;
+}
+
+.light {
+  --color-bg-primary: rgb(248 250 252);
+  --color-bg-secondary: #faa;
+  --color-text-primary: #2d3748;
+  --color-text-secondary: #4a5599;
+  --color-text-accent: #2b6cb0;
+
+}
+
+.dark {
+  --color-bg-primary: #2d3748;
+  --color-bg-secondary: #283141;
+  --color-text-primary: #f7fafc;
+  --color-text-secondary: #efa;
+  --color-text-accent: #81e6d9;
+}
+
+
+/* custom buttons */
+@layer components {
+  .button{
+    @apply mr-4 cursor-pointer inline-block py-2 px-6 border border-transparent rounded-md text-white bg-pink-400;
+  }
+  .button:focus{
+    @apply outline-none;
+  }
+  .button:hover{
+    @apply text-white bg-normalHover border-normalHover;
+  }
+  .button--inverse{
+    @apply bg-transparent text-inverse;
+  }
+  .button--inverse:hover,
+  .button--inverse:active{
+    @apply text-white bg-inverse;
+  }
+  .button--danger{
+    @apply bg-danger border border-danger;
+  }
+  .button--danger:hover,
+  .button--danger:active{
+    @apply bg-red-700 border-red-700;
+  }
+  .button:disabled,
+  .button:hover:disabled,
+  .button:active:disabled {
+    @apply bg-disabled text-disabled-dark  border-disabled cursor-not-allowed;
+  }
+}
