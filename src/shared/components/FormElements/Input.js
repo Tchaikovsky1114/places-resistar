@@ -21,23 +21,24 @@ const inputReducer = (state, action) => {
 
 const Input = (props) => {
   const [inputState, dispatch] = useReducer(inputReducer, {
-    value: '',
-    isValid: true,
+    value: props.initialValue || '',
     isBlur:false,
+    isValid: props.initialValid || false,
   });
-  const {id, onChange} = props;
+  const {id, onInput} = props;
   const {value, isValid} = inputState;
-  useEffect(()=>{
-    onChange(props.id,value,isValid)
-  },[id,isValid,onChange])
 
-  // const onChange = (e) => {
-  //   dispatch({
-  //     type: 'CHANGE',
-  //     payload: e.target.value,
-  //     validators: props.validators,
-  //   });
-  // };
+  useEffect(()=>{
+    onInput(id,value,isValid)
+  },[id,isValid,value,onInput])
+
+  const onChange = (e) => {
+    dispatch({
+      type: 'CHANGE',
+      payload: e.target.value,
+      validators: props.validators,
+    });
+  };
   const onBlur = () => {
     dispatch({
       type: 'BLUR'
@@ -58,27 +59,29 @@ const Input = (props) => {
     ) : (
       <textarea
         className={`block w-full border boder-slate-200 bg-[#f8f8f8] py-1 px-2 focus:outline-none focus:bg-[#ebebeb] focus:border focus:border-purple-800
+        
         `}
         id={props.id}
         rows={props.rows || 3}
         value={inputState.value}
         onChange={onChange}
-
+        onBlur={onBlur}
       />
     );
   return (
     <div
-      className={`my-4 ${!inputState.isValid && inputState.isBlur && 'text-red-600 bg-[#ffd1d1]'}`}
+      className={`my-4 `}
     >
       <label
         className={`block font-bold mb-2
-      ${props.invalid && 'text-red-600'}`}
+        ${!inputState.isValid && inputState.isBlur && 'bg-red-100'}
+      `}
         htmlFor={props.id}
       >
         {props.label}
       </label>
       {element}
-      {!inputState.isValid && <p>{props.errorText}</p>}
+      {!inputState.isValid && inputState.isBlur && <p className='text-red-600'>{props.errorText}</p>}
     </div>
   );
 };
