@@ -2,15 +2,20 @@ import React from 'react';
 import Card from '../../shared/components/UI/Card';
 import { Link } from 'react-router-dom';
 import PlaceItem from './PlaceItem';
+import Button from '../../shared/components/FormElements/Button';
+import ErrorCard from '../../shared/components/UI/ErrorCard';
+
+
 const Placelist = (props) => {
-  if (props.items.length === 0) {
+  if (props.items.length === 0 || !props.items) {
     return (
-      <div>
-        <Card>
-          <h2> No places found.Maybe create one ? </h2>{' '}
-          <button> Share Place </button>{' '}
-        </Card>{' '}
-      </div>
+        <ErrorCard>
+          <h2 className='text-2xl'> No places found...<br /> Maybe create one ? </h2>
+          <div className='mt-4'>
+          <Button to='/places/new'> Share Place </Button>
+        </div>
+        </ErrorCard>
+      
     );
   }
   return (

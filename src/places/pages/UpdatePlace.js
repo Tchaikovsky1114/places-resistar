@@ -8,6 +8,8 @@ import {
 } from '../../shared/util/validators';
 import Button from '../../shared/components/FormElements/Button';
 import { useForm } from '../../shared/hooks/useForm';
+import Card from '../../shared/components/UI/Card';
+import ErrorCard from '../../shared/components/UI/ErrorCard';
 
 
 const UpdatePlace = () => {
@@ -30,19 +32,21 @@ const UpdatePlace = () => {
   },true)
   
   useEffect(()=>{
-    setFormData({
-      title: {
-        value: place.title,
-        isValid: true
+    if(place){
+      setFormData({
+        title: {
+          value: place.title,
+          isValid: true
+        },
+        description: {
+          value: place.description,
+          isValid: true
+        }
+        
       },
-      description: {
-        value: place.description,
-        isValid: true
-      }
-      
-    },
-    true
-    );
+      true
+      );
+    }
     setIsLoading(false)
   },[setFormData,place])
   
@@ -53,12 +57,17 @@ const UpdatePlace = () => {
   }
   if (!place) {
     return (
-      <div>couldn't found place</div>
+      <ErrorCard>
+      <p>couldn't found place</p>
+      </ErrorCard>
+      
     );
   }
   if(isLoading){
     return (
-      <div>Loading...</div>
+      <Card>
+      <p>Loading...</p>
+      </Card>
     );
   }
   return(
