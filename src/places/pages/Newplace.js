@@ -20,9 +20,6 @@ const Newplace = () => {
       isValid: false
     }
   },false)
-
-
-
   const placeSubmitHandler = e => {
     e.preventDefault();
     console.log(formState.inputs)

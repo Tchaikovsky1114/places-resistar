@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import Button from '../../shared/components/FormElements/Button';
 import Modal from '../../shared/components/UI/Modal';
 import GoogleMap from '../../shared/components/UI/GoogleMap';
+import { UserContext } from '../../store/UserContext';
 const PlaceItem = (props) => {
+
+  const {isLoggedIn} = useContext(UserContext)
   const [showMap, setShowMap] = useState(false);
   const [showConfirmModal,setShowConfirmModal] = useState(false);
   const openMapHandler = () => setShowMap(true);
@@ -62,8 +65,8 @@ const PlaceItem = (props) => {
         </div>
         <div className="p-4 text-center border-t-2 border-gray-200 2xs:flex 2xs:justify-center 2xs:whitespace-nowrap 2xs:items-center 2xs:text-center 2xs:w-full 2xs:p-0 md:block">
           <Button inverse onClick={openMapHandler}>VIEW ON MAP</Button>
-          <Button to={`/places/${props.id}`}>EDIT</Button>
-          <Button danger onClick={toggleWarningModalHandler}>DELETE</Button>
+          {isLoggedIn && <Button to={`/places/${props.id}`}>EDIT</Button>}
+          {isLoggedIn && <Button danger onClick={toggleWarningModalHandler}>DELETE</Button>}
         </div>
       </li>
     </>

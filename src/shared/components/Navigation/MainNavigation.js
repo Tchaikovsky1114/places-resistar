@@ -14,7 +14,6 @@ const MainNavigation = () => {
   const closeDrawer = () => {
     setDrawerIsOpen(false)
   }
-  console.log(drawerIsOpen);
   return (
     <>
     {drawerIsOpen && <Backdrop closeDrawer={closeDrawer}></Backdrop>}
