@@ -9,7 +9,7 @@ const UserItem = (props) => {
         <Card>
       <Link className="flex justify-center items-center gap-4 z-30 cursor-pointer" to={`/${props.id}/places`}>
         <div>
-          <Avatar image={props.image} alt={props.name} />
+          <Avatar image={`${process.env.REACT_APP_ASSET_URL}/${props.image}`} alt={props.name} />
         </div>
       <div>
         <h2>{props.name}</h2>

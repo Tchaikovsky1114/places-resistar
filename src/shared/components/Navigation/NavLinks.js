@@ -12,6 +12,7 @@ const activeStyle = {
 
 
 const NavLinks = () => {
+  const {userId} = useContext(UserContext)
   const {isLoggedIn,logout} = useContext(UserContext);
   return (
     <ul className="list-none m-0 p-0 w-full h-full flex flex-col justify-center items-center md:flex-row md:justify-end md:flex 2xs:hidden xs:hidden">
@@ -28,7 +29,7 @@ const NavLinks = () => {
       <NavLink
       className='border-2 border-transparent text-amber-300 p-2 md:text-white'
       style={({isActive}) => isActive ? activeStyle : undefined }
-      to="/:dynamic/places">MY PLACES</NavLink>
+      to={`/${userId}/places`}>MY PLACES</NavLink>
       </li>
       }
       

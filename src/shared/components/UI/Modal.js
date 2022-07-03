@@ -7,7 +7,7 @@ const ModalOverlay = (props) => {
     <div
       className={`z-50 fixed top-20 left-1/4 w-4/5 bg-white shadow-md rounded-xl ${
         props.className
-      } md:left-[calc(50%-21rem)] md:w-[42rem] 2xs:w-80 2xs:left-8 2xs:top-40 2xs:gap-0 2xs:m-0  duration-200
+      } md:left-[calc(50%-21rem)] md:w-[42rem] sm:left-20 xs:left-16 2xs:w-80 2xs:left-8 2xs:top-40 2xs:gap-0 2xs:m-0 duration-200
     ${props.show ? 'translate-y-0 opacity-100' : 'translate-y-[-9999px] opacity-0'}`}
     >
       <header

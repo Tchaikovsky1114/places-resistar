@@ -1,6 +1,6 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom'
-const SideDrawerLinks = ({closeDrawer}) => {
+const SideDrawerLinks = ({onClick}) => {
   const activeStyle = {
     background: "#f8df00",
     borderColor: "#292929",
