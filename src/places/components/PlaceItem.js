@@ -72,7 +72,7 @@ const PlaceItem = (props) => {
         {isLoading && <LoadingSpinner large />}
           <img
             className="block w-full h-full object-cover"
-            src={`http://localhost:5050/${props.image}`}
+            src={`${process.env.REACT_APP_ASSET_URL}/${props.image}`}
             alt={props.title}
           />
         </div>
